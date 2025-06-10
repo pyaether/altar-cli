@@ -1,6 +1,6 @@
 [project]
 name = "pyaltar-cli"
-version = "0.0.0"
+version = "0.0.1"
 description = "A CLI for adding Altar UI components to your project."
 authors = [{ name = "Saurabh Ghanekar", email = "ghanekarsaurabh8@gmail.com" }]
 license = "BSD-2-Clause"

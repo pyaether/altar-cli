@@ -1,3 +1,3 @@
 # Altar CLI
 
-Build and run your Aether apps as well as manage your Altar UI components from the command line.
+A CLI for managing Altar UI components to your project.

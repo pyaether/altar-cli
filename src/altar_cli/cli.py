@@ -6,6 +6,7 @@ from rich.console import Console
 from . import __version__
 from .configs import configs
 from .resolver import resolve_component_dependencies
+from .utils import parse_version_slug
 
 
 @click.group()
@@ -20,9 +21,10 @@ def version() -> None:
 
 
 @main.command()
-@click.argument("components", nargs=-1, type=str)
+@click.argument("version_slug", type=click.STRING)
+@click.argument("components", nargs=-1, type=click.STRING)
 @click.option("--verbose", is_flag=True, help="Enable verbose mode to echo steps.")
-def add(components: tuple[str], verbose: bool) -> None:
+def add(version_slug: str, components: tuple[str], verbose: bool) -> None:
     console = Console()
 
     def _create_dir_if_not_exists(directory: Path) -> None:
@@ -49,6 +51,7 @@ def add(components: tuple[str], verbose: bool) -> None:
         console=console,
         components=components,
         component_dir=configs.components_dir,
+        version_slug=parse_version_slug(version_slug),
         verbose=verbose,
     )
 

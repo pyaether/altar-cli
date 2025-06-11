@@ -1,8 +1,6 @@
 import ast
-import re
 from collections import deque
 from pathlib import Path
-from typing import Literal
 from urllib.request import Request, urlopen
 
 from rich.console import Console
@@ -26,19 +24,9 @@ def resolve_component_dependencies(
     console: Console,
     components: tuple[str],
     component_dir: Path,
-    component_version: str | Literal["latest"] = "latest",
+    version_slug: str,
     verbose: bool = False,
 ) -> None:
-    match component_version:
-        case "latest":
-            # TODO: Fetch the latest tag by querying Github releases
-            version_slug = "tags/v0.3.0"
-        case _:
-            if re.match(r"^v\d+\.\d+\.\d+$", component_version):
-                version_slug = f"tags/{component_version}"
-            else:
-                version_slug = f"heads/{component_version}"
-
     resolved_components: set[str] = set()
     components_to_process: deque[str] = deque(components)
 
